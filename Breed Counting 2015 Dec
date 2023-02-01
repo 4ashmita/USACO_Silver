@@ -1,0 +1,32 @@
+import java.util.*;
+
+public class Counting {
+    static int[] arr;
+    public static int count(int a, int b, int find){
+        int count = 0;
+        for(int i = a-1; i <= b-1; i++){
+            if(arr[i] == find){
+                count += 1;
+            }
+        }
+        return count;
+    }
+    public static void main(String[] args){
+        Scanner scan = new Scanner(System.in);
+        int N = scan.nextInt();
+        int Q = scan.nextInt();
+        arr = new int[N];
+        for(int i = 0; i < N; i++){
+            arr[i] = scan.nextInt();
+        }
+        while(Q > 0){
+            int a = scan.nextInt();
+            int b = scan.nextInt();
+            int H = count(a,b,1);
+            int G = count(a,b,2);
+            int J = count(a,b,3);
+            System.out.println(H + " " + G + " " + J);
+            Q--;
+        }
+    }
+}
