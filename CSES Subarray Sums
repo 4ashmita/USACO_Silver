@@ -1,0 +1,35 @@
+// Source: https://usaco.guide/general/io
+
+import java.util.*;
+
+public class Main {
+	public static void main(String[] args) {
+		Scanner scan = new Scanner(System.in);
+		int n = scan.nextInt();
+		int x = scan.nextInt();
+		int[] arr = new int[n];
+		for(int i = 0; i < n; i++){
+			arr[i] = scan.nextInt();
+		}
+
+		int counter = 0;
+		int sum = 0;
+		for(int i = 0; i < n; i++){
+			sum = arr[i];
+			if(sum == x){
+				counter++;
+				continue;
+			}
+			for(int j = i+1; j < n; j++){
+				//System.out.println(sum);
+				if(sum == x){
+					//System.out.println(arr[i]);
+					counter++;
+					break;
+				}
+				sum += arr[j];
+			}
+		}
+		System.out.println(counter);
+	}
+}
