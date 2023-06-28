@@ -1,0 +1,43 @@
+// Source: https://usaco.guide/general/io
+
+#include <bits/stdc++.h>
+using namespace std;
+
+int main() {
+	int a; cin >> a;
+	set<char> b;
+	vector<char> flats(a); 
+	string dummy; cin >> dummy;
+	for(int i = 0; i < a; i++){
+		flats[i] = dummy.at(i); 
+	}
+	for(int i = 0; i < a; i++){
+		b.insert(flats[i]);
+	}
+	int ans = 10000;
+	bool distinct = false;
+	for(int i = 0; i < a; i++){
+		int counter = 0;
+		counter ++;
+		distinct = false;
+		for(int j = i+1; j < a; j++){
+			for(int s = i; s <= j; s++){
+				
+				if(flats[j] != flats[s]){
+					counter ++;
+					//cout << flats[j] << "\n";
+				}
+				if(counter == b.size()){
+					distinct = true;
+					break;
+				}
+			}
+			
+		}
+		if(counter < ans && counter !=0 && distinct){
+			ans = counter;
+		}
+	}
+	cout << ans;
+
+}
