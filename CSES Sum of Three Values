@@ -1,0 +1,38 @@
+// Source: https://usaco.guide/general/io
+
+#include <bits/stdc++.h>
+using namespace std;
+
+int main() {
+	int n, x; cin >> n >> x;
+	vector<pair<int,int>> v(n);
+	for(int i = 0; i < n; i++){
+		int value;
+		cin >> value;
+		v[i] = make_pair(value, i+1);
+	}
+	sort(v.begin(),v.end());
+	int right = n-1;
+	int left = 0;
+	bool done = false;
+	for(int i = 0; i < n; i++){
+		while(left < n && right >= 0 && left < right){
+			if(v[right].first+v[left].first+v[i].first == x && (i != right && i != left)){
+				done = true;
+				cout << v[left].second << " " << v[right].second << " " << v[i].second;
+			}
+			else if(v[right].first+v[left].first+v[i].first < x){
+				left++;
+			}
+			else if(v[right].first+v[left].first+v[i].first > x){
+				right--;
+			}
+			if(done){
+				break;
+			}
+		}
+	}
+	if(!done){
+		cout << "IMPOSSIBLE";
+	}
+}
