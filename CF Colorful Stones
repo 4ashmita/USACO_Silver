@@ -1,0 +1,15 @@
+// Source: https://usaco.guide/general/io
+
+#include <bits/stdc++.h>
+using namespace std;
+
+int main() {
+	string s, t; cin >> s >> t;
+	int pos = 0;
+	for(int i = 0; i < t.length(); i++){
+		if(s.at(pos) == t.at(i)){
+			pos++;
+		}
+	}
+	cout << pos+1;
+}
