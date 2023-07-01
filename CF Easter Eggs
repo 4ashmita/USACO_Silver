@@ -1,0 +1,29 @@
+// Source: https://usaco.guide/general/io
+
+#include <bits/stdc++.h>
+using namespace std;
+
+char dx[] = {' ', 'R', 'O', 'Y', 'G', 'B', 'I', 'V'};
+ 
+int main(){
+    int n;
+    cin >> n;
+    int tmp = n%7;
+    int round = n/7;
+    for(int i = 1; i <= round; i++){
+        for(int k = 1; k <= 7; k++){
+            cout << dx[k];
+        }
+    }
+    if(tmp >= 4){
+        for(int k = 1; k <= tmp; k++){
+            cout << dx[k];
+        }
+    }
+    else{
+        for(int k = 5 - tmp; k <= 4; k++){
+            cout << dx[k];
+        }
+    }
+}
+
