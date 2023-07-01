@@ -1,0 +1,54 @@
+// Source: https://usaco.guide/general/io
+
+#include <bits/stdc++.h>
+using namespace std;
+
+#define int int64_t
+
+int32_t main() {
+	int n; cin >> n;
+	vector<int> v(n);
+	vector<int> u(n);
+	vector<int> vsum(n);
+	vector<int> usum(n);
+	for(int i = 0; i < n; i++){
+		cin >> v[i];
+		u[i] = v[i];
+	}
+	sort(u.begin(), u.end());
+	vsum[0] = v[0];
+	usum[0] = u[0];
+	// vsum[i] = sum of elements up to i including ith index
+	for(int i = 1; i < n; i++){
+		vsum[i] = vsum[i-1]+v[i];
+		usum[i] = usum[i-1]+u[i];
+	}
+
+	int m; cin >> m;
+	for(int i = 0; i < m; i++){
+		int type; cin >> type;
+		int l; cin >> l;
+		l--;
+		int r; cin >> r;
+		r--;
+		int sum;
+		if(type == 1){
+			if(l == 0){
+				sum = vsum[r];
+			}
+			else{
+				sum = vsum[r]-vsum[l-1];
+			}
+			cout << sum << '\n';
+		}
+		else if(type == 2){
+			if(l == 0){
+				sum = usum[r];
+			}
+			else{
+				sum = usum[r]-usum[l-1];
+			}
+			cout << sum << '\n';
+		}
+	}
+}
