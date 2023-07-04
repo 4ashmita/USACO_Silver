@@ -1,0 +1,30 @@
+// Source: https://usaco.guide/general/io
+
+#include <bits/stdc++.h>
+using namespace std;
+
+int main() {
+	int n; cin >> n;
+	string a; cin >> a;
+	vector<char> m(n);
+	int bcounter = 0;
+	int ecounter = n-1;
+	int turn = 1;
+	for(int i = n-1; i >= 0; i--){
+		if(turn == 1){
+			m[ecounter] = a.at(i);
+			ecounter -= 1;
+		}
+		else if(turn == 2){
+			m[bcounter] = a.at(i);
+			bcounter += 1;
+		}
+		turn += 1;
+		if(turn > 2){
+			turn = 1;
+		}
+	}
+	for(char i: m){
+		cout << i;
+	}
+}
