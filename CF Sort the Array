@@ -1,0 +1,49 @@
+// Source: https://usaco.guide/general/io
+
+#include <bits/stdc++.h>
+using namespace std;
+void solve(int n, int a[]){
+	bool check = false;
+ 
+    int l = -1, r = n;
+    for (int i = 0; i < n - 1; i++){
+        if (a[i] > a[i + 1]){
+            l = i;
+            break;
+        }
+    }
+ 
+    if (l == -1){
+        cout << "yes\n" << 1 << " " << 1;
+        return;
+    }
+ 
+    for (int i = n - 1; i > 0; i--){
+        if (a[i] < a[i - 1]) {
+            r = i;
+            break;
+        }
+    }
+ 
+    int x = l, y = r;
+    while (l < r){
+        swap(a[l++], a[r--]);
+    }
+ 
+    for (int i = 0; i < n - 1; i++){
+        if (a[i] > a[i + 1]) {
+            cout << "no";
+            return;
+        }
+	}
+	cout << "yes" << endl;
+    cout << x + 1 << " " << y + 1;
+}
+int main() {
+	int n; cin >> n;
+	int a[n];
+	for(int i = 0; i < n; i++){
+		cin >> a[i];
+	}
+	solve(n, a);
+}
