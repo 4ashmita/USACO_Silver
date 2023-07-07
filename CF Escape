@@ -1,0 +1,21 @@
+#include <bits/stdc++.h>
+using namespace std;
+
+int main() {
+	int vp, vd, t, f, c; cin >> vp >> vd >> t >> f >> c;
+	int pmiles = vp*t;
+	int dmiles = 0;
+	int bijous = 0;
+	while(pmiles < c){
+		pmiles += vp;
+		dmiles += vd;
+		if(dmiles == pmiles){
+			cout << dmiles << " " << pmiles << "\n";
+			bijous += 1;
+			int h = dmiles/vd;
+			dmiles = 0;
+			pmiles += vp*h;
+		}
+	}
+	cout << bijous;
+}
