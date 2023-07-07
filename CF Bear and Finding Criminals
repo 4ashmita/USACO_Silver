@@ -1,0 +1,25 @@
+// Source: https://usaco.guide/general/io
+
+#include <bits/stdc++.h>
+using namespace std;
+
+int main() {
+	int n, a; cin >> n >> a;
+	vector<int> t(n);
+	for(int i = 0; i < n; i++){
+		cin >> t[i];
+	}
+	cout << n << " " << a << "\n";
+	int answer = 0;
+	for(int i = 1; i <= n; ++i) if(t[i]) {
+		// can we catch criminal in city i?
+		int distance = i - a; // distance from a
+		
+		int j = a - distance; // the other city at the same distance
+		cout << distance << " " << j;
+		if(j < 1 || j > n || t[i] == t[j]){
+			++answer;
+		}
+	}
+	//cout << answer;
+}
