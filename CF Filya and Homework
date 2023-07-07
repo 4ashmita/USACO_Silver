@@ -1,0 +1,28 @@
+// Source: https://usaco.guide/general/io
+
+#include <bits/stdc++.h>
+using namespace std;
+
+int main() {
+	int n;
+  cin >> n;
+  set<int> all;
+  for (int i = 0; i < n; i++) {
+    int a;
+    cin >> a;
+    all.insert(a);
+    if (all.size() > 3) {
+      cout << "NO";
+      return 0;
+    }
+  }
+  if (all.size() < 3) {
+    cout << "YES";
+    return 0;
+  }
+  vector<int> testthis;
+  for (int i : all) testthis.push_back(i);
+  if (testthis[0] + testthis[2] == 2 * testthis[1]) cout << "YES";
+  else cout << "NO";
+  return 0;
+}
