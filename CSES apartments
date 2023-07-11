@@ -1,0 +1,32 @@
+#include <bits/stdc++.h>
+using namespace std;
+
+int main() {
+	int n, m, k; cin >> n >> m >> k;
+	vector<int> sizes(n);
+	vector<int> aSize(m);
+	for(int i = 0; i < n; i++){
+		cin >> sizes[i];
+	}
+	for(int i = 0; i < m; i++){
+		cin >> aSize[i];
+	}
+	sort(sizes.begin(), sizes.end());
+	sort(aSize.begin(), aSize.end());
+	int counter = 0;
+	int mcounter = 0;
+	for(int i = 0; i < n; i++){
+		if(mcounter > m-1){
+			break;
+		}
+		if(sizes[i-1] == sizes[i] && aSize[mcounter] != aSize[mcounter-1]){
+			continue;
+		}
+		if(aSize[mcounter] >= (sizes[i]-k) && aSize[mcounter] <= (sizes[i]+k)){
+			counter += 1;
+		}
+		mcounter += 1;
+	}
+	cout << counter;
+	//return 0;
+}
