@@ -1,0 +1,37 @@
+#include <bits/stdc++.h>
+using namespace std;
+
+int main() {
+	int n; cin >> n;
+	vector<string> tanks(n);
+	for(int i = 0; i < n; i++){
+		cin >> tanks[i];
+	}
+	int zeroes = 0;
+	string b = "";
+
+	for(int i = 0; i < n; i++){
+		if(tanks[i] == '0'){
+			cout << 0;
+			return 0;
+		}
+		
+		string s = to_string(tanks[i]);
+		for(int j = 0; j < s.length(); j++){
+			
+			if(s.at(j) == '0' && s[0] == 1){
+				zeroes += 1;
+			}
+			else{
+				b *= tanks[i];
+				break;
+			}
+		}
+	}
+
+	cout << b;
+	for(int i = 0; i < zeroes; i++){
+		cout << "0";
+	}
+	
+}
