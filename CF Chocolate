@@ -1,0 +1,23 @@
+#include <bits/stdc++.h>
+using namespace std;
+
+int main() {
+	int a; cin >> a;
+	vector<int> nuts(a);
+	vector<int> index;
+	for(int i = 0; i < a; i++){
+		cin >> nuts[i];
+		if(nuts[i] == 1){
+			index.push_back(i);
+		}
+	}
+	iif(index.size() == 0){
+		cout << 0;
+		return 0;
+	}
+	long long ans = 0;
+	 for (int i = 1; i < index.size(); i++){
+        ans = ans * (index[i] - index[i - 1]);
+    }
+	cout << ans;
+}
