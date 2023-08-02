@@ -1,0 +1,55 @@
+#include <bits/stdc++.h>
+using namespace std;
+
+int main() {
+	int n, k, l, r, sAll, sK; cin >> n >> k >> l >> r >> sAll >> sK;
+	vector<int> nums(n);
+
+	if(n == k && sAl == sK){
+		int remain = sAll%n;
+		for(int i = 0; i < k; i++){
+			nums[i] = sK/k;
+		}
+		for(int i = 0; i < k; i++){
+			if(kRemain != 0){
+				if(nums[i]+1 <= r){
+					nums[i] += 1;
+					remain --;
+				}
+			}
+		
+		}
+	}
+	else{
+		int kRemain = sK%k;
+		for(int i = 0; i < k; i++){
+			nums[i] = sK/k;
+		}
+		for(int i = 0; i < k; i++){
+			if(kRemain != 0){
+				if(nums[i]+1 <= r){
+					nums[i] += 1;
+					kRemain --;
+				}
+			}
+		}
+		n -= k;
+		sAll -= sK;
+		int remainder = sAll%n;
+		for(int i = k; i < n + k; i++){
+			nums[i] = sAll/n;
+		}
+		for(int i = k; i < n+k; i++){
+			if(remainder != 0){
+				if(nums[i]+1 <= r){
+					nums[i] += 1;
+					remainder --;
+				}
+			}		
+		}
+	}
+
+	for(int i : nums){
+		cout << i << " ";
+	}
+}
