@@ -1,0 +1,35 @@
+#include <bits/stdc++.h>
+using namespace std;
+int count(vector<int> a, int n, int r) {
+	int low = 0;
+	int high = n-1;
+	if(a[0] > r){
+		return 0;
+	}
+	while(low != high){
+		int mid = (low+high+1)/2;
+		if(a[mid] <= r){
+			low = mid;
+		}
+		else if(a[mid] >= r){
+			high = mid-1;
+		}
+	}
+	return low+1;
+}
+int main() {
+	
+	int n, q; cin >> n >> q;
+	vector<int> bales(n);
+	for(int i = 0; i < n; i++){
+		cin >> bales[i];
+	}
+	sort(bales.begin(), bales.end());
+
+	for(int i = 0; i < q; i++){
+		int lrange, hrange; cin >> lrange >> hrange;
+		int low = count(bales,n,lrange-1);
+		int high = count(bales,n,hrange);
+		cout << high-low << endl;
+	}
+}
