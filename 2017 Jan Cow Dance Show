@@ -9,7 +9,7 @@ int main() {
 	for(int i = 0; i < N; i++){
 		cin >> cows[i];
 	}
-	for(int i = N-1; i >=0; i--){
+	for(int i = 1; i < N; i++){
 		vector<int> u(i);
 		int time = 0;
 		int counter = 0;
@@ -19,17 +19,19 @@ int main() {
 		}
 		bool zeros = std::all_of(u.begin(), u.end(), [](int k) { return k==0; });
 		while(!zeros){
+			int time1 = 0;
 			for(int j = 0; j < i; j++){
 				if(u[j] == 0){
 					continue;
 				}
 				else{
 					time += u[j];
+					time1 = u[j];
 					break;
 				}
 			}
 			for(int j = 0; j < i; j++){
-				u[j] -= time;
+				u[j] -= time1;
 				if(u[j] <= 0){
 					if(counter < N){
 						u[j] =cows[counter];
@@ -40,10 +42,13 @@ int main() {
 					}
 				}
 			}
+			if(time > T){
+				break;
+			}
 			zeros = std::all_of(u.begin(), u.end(), [](int k) { return k==0; });
 		}
 		if(time <= T){
-			cout << time;
+			cout << i;
 			break;
 		}
 	}
