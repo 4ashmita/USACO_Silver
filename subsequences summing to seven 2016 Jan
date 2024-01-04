@@ -1,0 +1,32 @@
+// Source: https://usaco.guide/general/io
+
+#include <bits/stdc++.h>
+using namespace std;
+
+int main() {
+	int N; cin >> N;
+	vector<long> a(N);
+	for(int i = 0; i < N; i++){
+		cin >> a[i];
+	}
+	vector<long> sum(N+1);
+	sum[0] = 0;
+	for(int i = 1; i < N+1; i++){
+		sum[i] = sum[i-1] + a[i-1];
+	}
+	int ans = 0;
+    for(int i = 1; i < N+1; i++){
+        long total = 0;
+        int count = 0;
+        for(int j = i+1; j < N+1; j++){
+            total = sum[j] - sum[i];
+            count = j-i;
+            if(total%7 == 0){
+                if(count>ans){
+                    ans = count;
+                }
+            }
+    	}
+	}
+    cout << ans;   
+}
