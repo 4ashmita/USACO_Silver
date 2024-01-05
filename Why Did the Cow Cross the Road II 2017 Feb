@@ -1,0 +1,36 @@
+// Source: https://usaco.guide/general/io
+
+#include <bits/stdc++.h>
+using namespace std;
+
+int main() {
+	int N , K, B; cin >> N >> K >> B;
+	vector<int> a(B);
+	for(int i = 0; i < B; i++){
+		cin >> a[i];
+	}
+	sort(a.begin(),a.end());
+	vector<int> order(N);
+	for(int i = 0; i < N; i++){
+		order[i] = i+1;
+	}
+	int ans = B;
+	for(int i = 1; i <= N; i++){
+		//int counter = 0;
+		int sub = 0;
+		int Kcounter = 1;
+		for(int j = i; (Kcounter <= K && j <= N); j++){
+			Kcounter++;
+			for(int k = 0; k < B; k++){
+				if(j == a[k]){
+					sub++;
+					//cout << j << " ";
+				}
+			}
+		}
+		if(sub <= ans && Kcounter >= K){
+			ans = sub;
+		}
+	}
+	cout << ans;
+}
