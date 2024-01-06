@@ -1,0 +1,48 @@
+// Source: https://usaco.guide/general/io
+
+#include <bits/stdc++.h>
+using namespace std;
+
+
+ 
+bool pos(int wait, int N, vector<int> t, int C, int M)
+{
+	int wagons = 1;
+	int firstArrival = t[0];
+	int firstIndex = 0;
+	for(int i=1;i<N;i++)
+	{
+		if(t[i] - firstArrival > wait || i + 1 - firstIndex > C)
+		{
+			wagons += 1;
+			firstArrival = t[i];
+			firstIndex = i;
+		}
+	}
+	return (wagons <= M);
+}
+ 
+int binSearch(int low,int high, int N, vector<int> t, int C, int M)
+{
+	if(low == high) return low;
+	if(low + 1 == high)
+	{
+		if(pos(low)) return low;
+		return high;
+	}
+	int mid = (low+high)/2;
+	if(pos(mid)) return binSearch(low,mid);
+	else return binSearch(mid+1,high);
+}
+ 
+int main()
+{
+	int N,M,C;
+	vectot<int> t(100000);
+	cin >> N >> M >> C;
+	for(int i=0;i<N;i++)
+		cin >> t[i];
+	sort(t,t+N);
+	cout << binSearch(0, 1000000000, N, t, C, M) << '\n';
+}cout << "The sum of these three numbers is " << a + b + c << "\n";
+
